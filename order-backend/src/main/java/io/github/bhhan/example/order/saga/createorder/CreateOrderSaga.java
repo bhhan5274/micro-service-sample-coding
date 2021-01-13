@@ -10,6 +10,7 @@ import io.github.bhhan.example.customer.api.replies.CustomerNotFound;
 import io.github.bhhan.example.order.common.RejectionReason;
 import io.github.bhhan.example.order.domain.Order;
 import io.github.bhhan.example.order.domain.OrderRepository;
+import org.springframework.transaction.annotation.Transactional;
 
 import static io.eventuate.tram.commands.consumer.CommandWithDestinationBuilder.send;
 
@@ -18,6 +19,7 @@ import static io.eventuate.tram.commands.consumer.CommandWithDestinationBuilder.
  * Github : http://github.com/bhhan5274
  */
 
+@Transactional
 public class CreateOrderSaga implements SimpleSaga<CreateOrderSagaData> {
 
     private OrderRepository orderRepository;
