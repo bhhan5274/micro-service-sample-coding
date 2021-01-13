@@ -1,1 +1,12 @@
 rootProject.name = 'order-customer-example'
+include 'common'
+include 'common-swagger'
+include 'order-common'
+include 'order-web-api'
+include 'order-backend'
+include 'customer-api'
+include 'order-service'
+include 'customer-web-api'
+include 'customer-backend'
+include 'customer-service'
+

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="GradleMigrationSettings" migrationVersion="1" />
   <component name="GradleSettings">
     <option name="linkedExternalProjectsSettings">
       <GradleProjectSettings>
@@ -9,8 +10,20 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/buildSrc" />
+            <option value="$PROJECT_DIR$/common" />
+            <option value="$PROJECT_DIR$/common-swagger" />
+            <option value="$PROJECT_DIR$/customer-api" />
+            <option value="$PROJECT_DIR$/customer-backend" />
+            <option value="$PROJECT_DIR$/customer-service" />
+            <option value="$PROJECT_DIR$/customer-web-api" />
+            <option value="$PROJECT_DIR$/order-backend" />
+            <option value="$PROJECT_DIR$/order-common" />
+            <option value="$PROJECT_DIR$/order-service" />
+            <option value="$PROJECT_DIR$/order-web-api" />
           </set>
         </option>
+        <option name="useAutoImport" value="true" />
         <option name="useQualifiedModuleNames" value="true" />
       </GradleProjectSettings>
     </option>
