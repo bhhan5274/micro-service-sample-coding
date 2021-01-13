@@ -7,6 +7,7 @@ import io.github.bhhan.example.customer.domain.CustomerNotFoundException;
 import io.github.bhhan.example.customer.domain.CustomerRepository;
 import org.springframework.transaction.annotation.Transactional;
 
+@Transactional
 public class CustomerService {
 
   private CustomerRepository customerRepository;
@@ -15,7 +16,6 @@ public class CustomerService {
     this.customerRepository = customerRepository;
   }
 
-  @Transactional
   public Customer createCustomer(String name, Money creditLimit) {
     Customer customer  = new Customer(name, creditLimit);
     return customerRepository.save(customer);
