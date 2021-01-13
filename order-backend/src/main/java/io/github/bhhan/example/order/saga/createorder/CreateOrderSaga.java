@@ -56,8 +56,8 @@ public class CreateOrderSaga implements SimpleSaga<CreateOrderSagaData> {
 
     private void create(CreateOrderSagaData data) {
         Order order = Order.createOrder(data.getOrderDetails());
-        orderRepository.save(order);
-        data.setOrderId(order.getId());
+        Order savedOrder = orderRepository.save(order);
+        data.setOrderId(savedOrder.getId());
     }
 
     private CommandWithDestination reserveCredit(CreateOrderSagaData data) {
