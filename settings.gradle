@@ -9,4 +9,6 @@ include 'order-service'
 include 'customer-web-api'
 include 'customer-backend'
 include 'customer-service'
+include 'api-gateway-web-api'
+include 'api-gateway'
 

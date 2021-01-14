@@ -5,8 +5,9 @@ services:
       context: ./order-service/
       args:
         baseImageVersion: ${EVENTUATE_JAVA_BASE_IMAGE_VERSION?}
+    image: bhhan87/example-order-service:${DOCKER_IMAGE_TAG?}
     ports:
-      - "8081:8080"
+      - "8081:8081"
     depends_on:
       - postgres
       - kafka
@@ -25,8 +26,9 @@ services:
       context: ./customer-service/
       args:
         baseImageVersion: ${EVENTUATE_JAVA_BASE_IMAGE_VERSION?}
+    image: bhhan87/example-customer-service:${DOCKER_IMAGE_TAG?}
     ports:
-      - "8082:8080"
+      - "8082:8082"
     depends_on:
       - postgres
       - kafka
@@ -45,13 +47,14 @@ services:
       context: ./api-gateway/
       args:
         baseImageVersion: ${EVENTUATE_JAVA_BASE_IMAGE_VERSION?}
+    image: bhhan87/example-api-gateway:${DOCKER_IMAGE_TAG?}
     ports:
-      - "8083:8080"
+      - "8083:8083"
     environment:
-      ORDER_DESTINATIONS_ORDERSERVICEURL: http://orderservice:8080
-      CUSTOMER_DESTINATIONS_CUSTOMERSERVICEURL: http://customerservice:8080
+      ORDER_DESTINATIONS_ORDERSERVICEURL: http://orderservice:8081
+      CUSTOMER_DESTINATIONS_CUSTOMERSERVICEURL: http://customerservice:8082
       JAVA_OPTS: -Ddebug
-      APIGATEWAY_TIMEOUT_MILLIS: ${APIGATEWAY_TIMEOUT_MILLIS:-1000}
+      APIGATEWAY_TIMEOUT_MILLIS: ${APIGATEWAY_TIMEOUT_MILLIS:-2000}
 
   zookeeper:
     image: confluentinc/cp-zookeeper:5.2.4
@@ -104,4 +107,11 @@ services:
       EVENTUATELOCAL_ZOOKEEPER_CONNECTION_STRING: zookeeper:2181
       EVENTUATELOCAL_CDC_READER_NAME: PostgresPollingReader
       SPRING_PROFILES_ACTIVE: EventuatePolling
+      JAVA_OPTS: -Xmx64m
+
+  zipkin:
+    image: openzipkin/zipkin:2.21
+    ports:
+      - "9411:9411"
+    environment:
       JAVA_OPTS: -Xmx64m
