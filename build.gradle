@@ -50,7 +50,7 @@ dockerCompose {
     postgresinfrastructure {
         projectName = null
         useComposeFiles = ["docker-compose-postgres.yml"]
-        startedServices = ["cdcservice"]
+        startedServices = ["cdcservice", "zipkin"]
     }
     postgres {
         projectName = null
@@ -61,5 +61,6 @@ dockerCompose {
 subprojects.each {
     if (it.name.endsWith("-service") || it.name.endsWith("-gateway")) {
         mysqlComposeUp.dependsOn(":" + it.name + ":assemble")
+	postgresComposeUp.dependsOn(":" + it.name + ":assemble")
     }
 }
